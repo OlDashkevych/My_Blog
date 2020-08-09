@@ -6,7 +6,7 @@ import { postsOperations } from '../../redux/posts';
 import PostEditor from '../../components/PostEditor';
 import PostList from '../../components/PostList';
 
-const HomeView = () => {
+const HomeView: React.FC = () => {
   const dispatch = useDispatch();
   useEffect(() => dispatch(postsOperations.getList()), [dispatch]);
 

@@ -3,22 +3,24 @@ import { useDispatch } from 'react-redux';
 import { postsOperations } from '../../redux/posts';
 import './CommentsForm.css';
 
-const CommentsForm = ({ postId }) => {
-  const [body, setBody] = useState('');
+const CommentsForm: React.FC<{ id: string }> = ({ id }) => {
+  const [body, setBody] = useState<string>('');
   const dispatch = useDispatch();
 
-  const handleInputChange = ({ currentTarget: { value } }) => setBody(value);
+  const handleInputChange = ({
+    currentTarget: { value },
+  }: React.ChangeEvent<HTMLInputElement>) => setBody(value);
 
-  const handleSubmit = e => {
+  const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
-    postId = Number(postId);
+    const postId: number = Number(id);
     dispatch(postsOperations.createComment({ postId, body }));
     setBody('');
   };
 
   return (
     <form className="commentsForm" onSubmit={handleSubmit}>
-      <label className="commentsForm-label">
+      <label htmlFor="5" className="commentsForm-label">
         <input
           className="commentsForm-input"
           type="text"
@@ -27,6 +29,7 @@ const CommentsForm = ({ postId }) => {
           onChange={handleInputChange}
           autoComplete="off"
           required
+          id="5"
         />
       </label>
 

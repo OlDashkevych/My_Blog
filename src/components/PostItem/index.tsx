@@ -7,9 +7,16 @@ import editIcon from '../../images/icons/icons8-edit-40.png';
 import closeIcon from '../../images/icons/icons8-close-window-30.png';
 import deleteIcon from '../../images/icons/delete.png';
 import { path } from '../../routes';
+import { IPosts } from '../../interfaces';
 
-const PostListItem = ({ title, body, id }) => {
-  const [edit, setEdit] = useState(false);
+interface IPostListItemProps {
+  post: IPosts;
+}
+
+const PostListItem: React.FC<IPostListItemProps> = ({
+  post: { title, body, id },
+}) => {
+  const [edit, setEdit] = useState<boolean>(false);
 
   const dispatch = useDispatch();
 
@@ -17,23 +24,31 @@ const PostListItem = ({ title, body, id }) => {
     dispatch(postsOperations.deletePost(id));
   };
 
-  const openEdit = e => {
+  const openEdit = () => {
     setEdit(true);
   };
 
-  const closeEdit = e => {
+  const closeEdit = () => {
     setEdit(false);
   };
 
-  const [updatedData, setIupdatedData] = useState({ title, body });
+  const [updatedData, setIupdatedData] = useState<{
+    title: string;
+    body: string;
+  }>({
+    title,
+    body,
+  });
 
-  const handleInputChange = ({ currentTarget: { name, value } }) =>
+  const handleInputChange = ({
+    currentTarget: { name, value },
+  }: React.ChangeEvent<HTMLInputElement>) =>
     setIupdatedData({
       ...updatedData,
       [name]: value,
     });
 
-  const handleSubmit = e => {
+  const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
     const updated = { ...updatedData, id };
     dispatch(postsOperations.updatePost(updated));
@@ -43,7 +58,7 @@ const PostListItem = ({ title, body, id }) => {
   return !edit ? (
     <li className={styles.item}>
       <p className={styles.title}>{title}</p>
-      <p>{body.length > 170 ? body.slice(0, 170) + '...' : body}</p>
+      <p>{body.length > 170 ? `${body.slice(0, 170)}...` : body}</p>
       <div className={styles.controlPanel}>
         <button
           type="button"
@@ -64,11 +79,11 @@ const PostListItem = ({ title, body, id }) => {
     </li>
   ) : (
     <li className={styles.item}>
-      <button className={styles.closeBtn} onClick={closeEdit}>
+      <button type="button" className={styles.closeBtn} onClick={closeEdit}>
         <img src={closeIcon} alt="closeIcon" />
       </button>
       <form className={styles.editForm} onSubmit={handleSubmit}>
-        <label className={styles.editItemLabel}>
+        <label htmlFor="1" className={styles.editItemLabel}>
           Title
           <input
             className={styles.edititemInput}
@@ -77,10 +92,11 @@ const PostListItem = ({ title, body, id }) => {
             value={updatedData.title}
             onChange={handleInputChange}
             autoComplete="off"
+            id="1"
             required
           />
         </label>
-        <label className={styles.editItemLabel}>
+        <label htmlFor="2" className={styles.editItemLabel}>
           Info
           <input
             className={styles.edititemInput}
@@ -89,6 +105,7 @@ const PostListItem = ({ title, body, id }) => {
             value={updatedData.body}
             onChange={handleInputChange}
             autoComplete="off"
+            id="2"
             required
           />
         </label>

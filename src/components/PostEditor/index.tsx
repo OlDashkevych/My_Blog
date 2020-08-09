@@ -1,15 +1,15 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import './PostEditor.css';
-import useInputChange from './/hooks/useInputsChange';
+import useInputChange from './hooks/useInputsChange';
 import { postsOperations } from '../../redux/posts';
 
-const PostEditor = () => {
+const PostEditor: React.FC = () => {
   const dispatch = useDispatch();
 
   const [input, handleInputChange, handleClearInput] = useInputChange();
 
-  const handleSubmit = e => {
+  const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(postsOperations.createPost(input));
     handleClearInput();
@@ -17,7 +17,7 @@ const PostEditor = () => {
 
   return (
     <form className="postEditor" onSubmit={handleSubmit}>
-      <label className="postEditor-label">
+      <label htmlFor="3" className="postEditor-label">
         Title
         <input
           className="postEditor-input"
@@ -26,9 +26,10 @@ const PostEditor = () => {
           value={input.title}
           onChange={handleInputChange}
           autoComplete="off"
+          id="3"
         />
       </label>
-      <label className="postEditor-label">
+      <label htmlFor="4" className="postEditor-label">
         Info
         <input
           className="postEditor-input"
@@ -37,6 +38,7 @@ const PostEditor = () => {
           value={input.body}
           onChange={handleInputChange}
           autoComplete="off"
+          id="4"
         />
       </label>
 

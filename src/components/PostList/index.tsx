@@ -6,14 +6,16 @@ import { postsSelectors } from '../../redux/posts';
 import styles from './PostList.module.css';
 import popTransition from './transition/pop.module.css';
 
-const PostList = () => {
-  const posts = useSelector(postsSelectors.getPosts);
+import { IPosts } from '../../interfaces';
+
+const PostList: React.FC = () => {
+  const posts: IPosts[] = useSelector(postsSelectors.getPosts);
 
   return (
     <TransitionGroup className={styles.list} component="ul">
       {posts.map(post => (
         <CSSTransition key={post.id} timeout={250} classNames={popTransition}>
-          <PostItem key={post.id} {...post} />
+          <PostItem key={post.id} post={post} />
         </CSSTransition>
       ))}
     </TransitionGroup>
