@@ -20,6 +20,12 @@
   text-transform: uppercase;
 }
 
+.goBackBtn {
+  background-color: transparent;
+  height: 50px;
+  width: 50px;
+}
+
 @media (max-width: 768px) {
   .wrapper {
     width: 80%;

@@ -7,16 +7,15 @@ const initialPostsState = [];
 const postsList = createReducer(initialPostsState, {
   [postsActions.getListSuccess]: (_, { payload }) => payload.data,
   [postsActions.createPostSuccess]: (state, { payload }) => [
-    ...state,
     payload.data,
+    ...state,
   ],
   [postsActions.deletePostSuccess]: (state, { payload }) =>
     state.filter(({ id }) => id !== payload.id),
   [postsActions.updatePostSuccess]: (state, { payload }) =>
     state.map(item => {
       if (item.id === payload.id) {
-        item = payload;
-        return item;
+        return payload;
       }
       return item;
     }),
@@ -49,26 +48,26 @@ const error = createReducer(null, {
 });
 
 const loading = createReducer(false, {
-  [postsActions.createPostRequest]: (_, { payload }) => true,
-  [postsActions.getRetrieveRequest]: (_, { payload }) => true,
-  [postsActions.getListRequest]: (_, { payload }) => true,
-  [postsActions.updatePostRequest]: (_, { payload }) => true,
-  [postsActions.deletePostRequest]: (_, { payload }) => true,
-  [postsActions.createCommentRequest]: (_, { payload }) => true,
+  [postsActions.createPostRequest]: () => true,
+  [postsActions.getRetrieveRequest]: () => true,
+  [postsActions.getListRequest]: () => true,
+  [postsActions.updatePostRequest]: () => true,
+  [postsActions.deletePostRequest]: () => true,
+  [postsActions.createCommentRequest]: () => true,
 
-  [postsActions.createPostError]: (_, { payload }) => false,
-  [postsActions.getRetrieveError]: (_, { payload }) => false,
-  [postsActions.getListError]: (_, { payload }) => false,
-  [postsActions.updatePostError]: (_, { payload }) => false,
-  [postsActions.deletePostError]: (_, { payload }) => false,
-  [postsActions.createCommentError]: (_, { payload }) => false,
+  [postsActions.createPostError]: () => false,
+  [postsActions.getRetrieveError]: () => false,
+  [postsActions.getListError]: () => false,
+  [postsActions.updatePostError]: () => false,
+  [postsActions.deletePostError]: () => false,
+  [postsActions.createCommentError]: () => false,
 
-  [postsActions.createPostSuccess]: (_, { payload }) => false,
-  [postsActions.getRetrieveSuccess]: (_, { payload }) => false,
-  [postsActions.getListSuccess]: (_, { payload }) => false,
-  [postsActions.updatePostSuccess]: (_, { payload }) => false,
-  [postsActions.deletePostSuccess]: (_, { payload }) => false,
-  [postsActions.createCommentSuccess]: (_, { payload }) => false,
+  [postsActions.createPostSuccess]: () => false,
+  [postsActions.getRetrieveSuccess]: () => false,
+  [postsActions.getListSuccess]: () => false,
+  [postsActions.updatePostSuccess]: () => false,
+  [postsActions.deletePostSuccess]: () => false,
+  [postsActions.createCommentSuccess]: () => false,
 });
 
 export default combineReducers({
