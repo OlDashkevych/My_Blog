@@ -1,0 +1,23 @@
+html {
+  box-sizing: border-box;
+}
+*,
+::before,
+::after {
+  box-sizing: inherit;
+}
+img {
+  display: block;
+  max-width: 100%;
+}
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  background-image: url(./images/textures/gray-floral.png);
+  background-color: #c2ac74;
+}
+button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
