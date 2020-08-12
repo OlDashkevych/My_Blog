@@ -4,4 +4,6 @@ const getDetails = state => state.posts.details;
 
 const getComments = state => state.posts.comments;
 
-export default { getPosts, getDetails, getComments };
+const getLoading = state => state.posts.loading;
+
+export default { getPosts, getDetails, getComments, getLoading };
