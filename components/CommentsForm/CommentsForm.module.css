@@ -1,0 +1,70 @@
+.commentsForm {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 12px;
+  width: 60%;
+  border-radius: 2px;
+  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
+    0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+  margin: 0 auto 16px;
+}
+
+.commentsFormLabel {
+  display: inline-block;
+  font-size: 20px;
+  color: #171718;
+  cursor: pointer;
+  width: 78%;
+  height: 100%;
+}
+
+.commentsFormInput {
+  color: #171718;
+  font: inherit;
+  font-size: 1.2rem;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #bdbdbd;
+  width: 100%;
+  outline: 0;
+}
+
+.commentsFormInput:focus {
+  border: 1px solid #2b32b2;
+}
+
+.commentsFormButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background-color: #3f51b5;
+  padding: 8px 24px;
+  border-radius: 4px;
+  box-shadow: 0px 2px 1px 1px rgba(0, 0, 0, 0.05);
+  font: inherit;
+  text-transform: uppercase;
+  user-select: none;
+  transition: background-color 200ms ease-in-out;
+  width: 50%;
+  height: 100%;
+  margin-top: 10px;
+}
+
+.commentsFormButton:hover {
+  box-shadow: 0px 2px 1px 1px rgba(0, 0, 0, 0.15);
+  background-color: #303f9f;
+}
+
+@media (max-width: 768px) {
+  .commentsFormButton {
+    width: 80%;
+  }
+
+  .commentsForm {
+    width: 100%;
+  }
+}
